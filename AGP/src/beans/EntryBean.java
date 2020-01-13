@@ -8,7 +8,7 @@ import business.client.SimulationEntry;
 import business.simulation.Simulation;
 import business.spring.SpringIoC;
 
-/
+
 @ManagedBean
 @SessionScoped
 public class EntryBean {
