@@ -1,4 +1,4 @@
-package buisness.engine;
+package buisness.model;
 
 public class Visits {
 

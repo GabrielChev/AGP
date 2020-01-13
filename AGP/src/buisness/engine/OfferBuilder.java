@@ -1,5 +1,5 @@
 package buisness.engine;
 
-public class Transport {
+public class OfferBuilder {
 
 }
