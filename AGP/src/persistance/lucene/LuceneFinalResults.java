@@ -13,10 +13,11 @@ import java.sql.DriverManager;
 import persistance.JdbcConnection;
 
 public class LuceneFinalResults {
-		
+			
 		private ArrayList<String> selectedFiles =  new ArrayList<String>();
 		private ArrayList<String> queryResult =  new ArrayList<String>();
 		private String query;
+		
 		public  LuceneFinalResults(String SearchingWord , String query) throws SQLException {
 			this.query = query;
 			
@@ -69,4 +70,5 @@ public class LuceneFinalResults {
 		public void setQuery(String query) {
 			this.query = query;
 		}
+	
 }

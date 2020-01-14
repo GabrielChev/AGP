@@ -26,12 +26,7 @@ public class JdbcPersistance  {
 
 			PreparedStatement preparedStatement = JdbcConnection.getConnection().prepareStatement(insertAddressQuery);
 
-			preparedStatement.setInt(1, client.getArrivalTime());
-			preparedStatement.setInt(2, client.getServiceStartTime());
-			preparedStatement.setInt(3, client.getDepartureTime());
-			preparedStatement.setBoolean(4, isServed);
-			preparedStatement.setBoolean(5, client.isPriority());
-			preparedStatement.setInt(6, idEntry);
+		
 
 			preparedStatement.executeUpdate();
 
