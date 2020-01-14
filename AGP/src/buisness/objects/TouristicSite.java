@@ -7,19 +7,20 @@ public class TouristicSite {
 		private String description;
 		private double longitude;
 		private double latitude;
+		private double price;
 		
 		
-		public TouristicSite(String name, String type, String description, double longitude, double latitude)
+		public TouristicSite(String name, String type, String description, double longitude, double latitude, double price)
 		{
 			this.name = name;
 			this.type = type;
 			this.description = description;
 			this.longitude = longitude;
 			this.latitude = latitude;
+			this.price = price;
 		}
 
 
-	
 
 
 		public String getName() {
@@ -71,9 +72,18 @@ public class TouristicSite {
 			this.latitude = latitude;
 		}
 		
+		public double getPrice() {
+			return price;
+		}
+
+
+		public void setPrice(double price) {
+			this.price = price;
+		}
+		
 		@Override
 		public String toString() {
 			return "TouristicSite [name=" + name + ", type=" + type + ", description=" + description + ", longitude="
-					+ longitude + ", latitude=" + latitude + "]";
+					+ longitude + ", latitude=" + latitude + " price" +price +"]";
 		}
 }

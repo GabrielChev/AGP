@@ -28,7 +28,7 @@ public class Stay {
 		
 		while(j < this.touristiqueSites.length) {
 			dis = cal.calculateDistance(this.touristiqueSites[i] , this.touristiqueSites[j]);
-			this.excursionPrice += dis * this.transports[i].getKiloMeterPrice();
+			this.excursionPrice += dis * this.transports[i].getKiloMeterPrice() + this.touristiqueSites[i].getPrice();
 			i +=1;
 			j+=1;	
 		}
