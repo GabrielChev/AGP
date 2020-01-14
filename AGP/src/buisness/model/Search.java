@@ -1,11 +1,11 @@
 package buisness.model;
 
+import buisness.objects.TouristicSite;
+
 public class Search {
 
 	private String keyWords;
 	private String name;
-	//private TouristPlaceType touristPlaceType;
-	//private business.model.TransportType transportType;
 	private double offerPriceMin;
 	private double offerPriceMax;
 	private double confort;
@@ -17,25 +17,17 @@ public class Search {
 		
 	}
 
-	public Search(String keyWords, String name, TouristPlaceType touristPlaceType, double offerPriceMin,
+	public Search(String keyWords, String name, double offerPriceMin,
 			double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days) {
 		this.keyWords = keyWords;
 		this.name = name;
-		//this.touristPlaceType = touristPlaceType;
+	
 		this.offerPriceMin = offerPriceMin;
 		this.offerPriceMax = offerPriceMax;
 		this.confort = confort;
 		this.hotelRatingMin = hotelRatingMin;
 		this.hotelRatingMax = hotelRatingMax;
 		this.days = days;
-	}
-
-	public TouristPlaceType getTouristPlaceType() {
-		return touristPlaceType;
-	}
-
-	public void setTouristPlaceType(TouristPlaceType touristPlaceType) {
-		this.touristPlaceType = touristPlaceType;
 	}
 
 	public String getName() {

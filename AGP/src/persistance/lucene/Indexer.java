@@ -62,4 +62,6 @@ public class Indexer {
 			      return writer.numRamDocs();
 			      
 			   }
+	   
+
 }

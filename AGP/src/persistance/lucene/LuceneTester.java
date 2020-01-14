@@ -10,11 +10,11 @@ import org.apache.lucene.search.TopDocs;
 import java.io.File;
 public class LuceneTester {
 	
-
+	static String DATA_DIR = new LuceneConstants().LuceneConstants();
    Indexer indexer;
    Searcher searcher;
    
-  public ArrayList<String> LuceneTester (String searchingWord) {
+  /*public ArrayList<String> LuceneTester (String searchingWord) {
 	 ArrayList<String> pathList = new ArrayList<String>();
       try {
       	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
@@ -27,15 +27,17 @@ public class LuceneTester {
          e.printStackTrace();
       }
 	return pathList;
-   }
-  /* public static void main (String[] argv) {
+   }*/
+   public static void main (String[] argv) {
+	   System.out.println(DATA_DIR);
+	   ArrayList<String> pathList = new ArrayList<String>();
 	   LuceneTester tester;
 	      try {
 	      tester = new LuceneTester();
 	      	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
 	          	tester.createIndex();
 	          }
-	      tester.search("mosquée");
+	      	pathList =  tester.search("mosquée", pathList);
 	      
 	      System.out.println("array "+pathList);
 	      } catch (IOException e) {
@@ -43,14 +45,14 @@ public class LuceneTester {
 	      } catch (ParseException e) {
 	         e.printStackTrace();
 	      }
-   }*/
+   }
    
    
    private void createIndex() throws IOException {
 		      indexer = new Indexer(LuceneConstants.INDEX_DIR);
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
-		      numIndexed = indexer.createIndex(LuceneConstants.DATA_DIR, new TextFileFilter());
+		      numIndexed = indexer.createIndex(DATA_DIR, new TextFileFilter());
 		      long endTime = System.currentTimeMillis();
 		      indexer.close();
 		      System.out.println(numIndexed+" File indexed, time taken: "
@@ -67,9 +69,10 @@ public class LuceneTester {
          " documents found. Time :" + (endTime - startTime));
       for(ScoreDoc scoreDoc : hits.scoreDocs) {
          Document doc = searcher.getDocument(scoreDoc);
-           /* System.out.println("File: "
-            + doc.get(LuceneConstants.FILE_PATH)+" score : "+scoreDoc);*/
-            pathList.add(doc.get(LuceneConstants.FILE_PATH));
+            System.out.println("File: "
+            + doc.get(LuceneConstants.FILE_PATH)+" score : "+scoreDoc);
+            pathList.add(splitPath(doc.get(LuceneConstants.FILE_PATH)));
+            
       }  
       return  pathList;
    }
@@ -81,4 +84,16 @@ public class LuceneTester {
 	   return false;
 	  }
 	 
+   public String splitPath(String path) {
+	   String newPath = "";
+	   
+	   String[] tabString = path.split("/");
+	   for(String word : tabString) {
+		   if(word.contains(".txt")) {
+			   newPath = word;
+		   }
+	   }
+	   
+	   return newPath;
+   }
 }
