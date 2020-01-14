@@ -5,10 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 class JdbcConnection {
-	private static String host = "";
-	private static String base = "";
-	private static String user = "";
-	private static String password = "";
+	private static String host = "mysql-projetagp.alwaysdata.net";
+	private static String base = "projetagp_base";
+	private static String user = "projetagp";
+	private static String password = "projet2020";
 	private static String url = "jdbc:mysql://" + host + "/" + base;
 
 	/**
