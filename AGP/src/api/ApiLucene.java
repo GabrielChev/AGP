@@ -26,7 +26,7 @@ public class ApiLucene {
 	        String sqlQuery = "";
 	        String[] queryDecomposed;
 	        
-	        queryDecomposed = query.toLowerCase().split("with ");
+	        queryDecomposed = query.split("with ");
 	        sqlQuery = queryDecomposed[0];
 	        withQuery = queryDecomposed[1];
 	        
@@ -34,7 +34,7 @@ public class ApiLucene {
 	        System.out.println("Words : "+ withQuery);
 
 	        try {
-				return new LuceneFinalResults(sqlQuery, withQuery).getQueryResult();
+				return new LuceneFinalResults(withQuery, sqlQuery).getQueryResult();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

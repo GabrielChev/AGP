@@ -1,16 +1,17 @@
 package persistance.lucene;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class LuceneTest {
+	private static ArrayList<String> selectedFiles =  new ArrayList<String>();
+	
 	public static void main (String[] argv) throws SQLException {
-		
-		
-		String query = "SELECT name,type,longitude,latitude,id_isle FROM TouristicSite";
-		LuceneFinalResults luceneQuery = new LuceneFinalResults("musée",query);
-		
-		System.out.println("lucene = " + luceneQuery.getSelectedFiles());
-		System.out.println("query = "+ luceneQuery.getQueryResult());
+		System.out.println("main test ");
+	
+		LuceneFinalResults luceneQuery1 = new LuceneFinalResults("mosquée","SELECT name,type,longitude,latitude,id_isle  FROM TouristicSite");
 		
 	}
+
+	
 }

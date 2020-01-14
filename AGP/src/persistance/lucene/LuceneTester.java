@@ -20,7 +20,7 @@ public class LuceneTester {
       	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
          	createIndex();
          }
-         pathList = search(searchingWord,pathList);
+         pathList = search(searchingWord,spathList);
       } catch (IOException e) {
          e.printStackTrace();
       } catch (ParseException e) {
@@ -35,8 +35,9 @@ public class LuceneTester {
 	      try {
 	      tester = new LuceneTester();
 	      	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
-	          	tester.createIndex();
 	          }
+	          	tester.createIndex();
+
 	      	pathList =  tester.search("mosquée", pathList);
 	      
 	      System.out.println("array "+pathList);
@@ -52,6 +53,7 @@ public class LuceneTester {
 		      indexer = new Indexer(LuceneConstants.INDEX_DIR);
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
+		      System.out.println(DATA_DIR);
 		      numIndexed = indexer.createIndex(DATA_DIR, new TextFileFilter());
 		      long endTime = System.currentTimeMillis();
 		      indexer.close();

@@ -71,7 +71,6 @@ private void createIndex() throws IOException {
 		         +(endTime-startTime)+" ms");
 	 
    }	   
-
    private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
       searcher = new Searcher(LuceneConstants.INDEX_DIR);
       long startTime = System.currentTimeMillis();
