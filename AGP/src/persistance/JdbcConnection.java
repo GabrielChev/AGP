@@ -4,7 +4,7 @@ package persistance;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-class JdbcConnection {
+public class JdbcConnection {
 	private static String host = "mysql-projetagp.alwaysdata.net";
 	private static String base = "projetagp_base";
 	private static String user = "projetagp";
