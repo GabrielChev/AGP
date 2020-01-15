@@ -11,10 +11,10 @@ import org.apache.lucene.search.TopDocs;
 import java.io.File;
 public class LuceneQuery {
 	
-  static String DATA_DIR = new LuceneConstants().LuceneConstants();
-  ArrayList<String> pathList = new ArrayList<String>();
-   Indexer indexer;
-   Searcher searcher;
+  static String dataDir = new LuceneConstants().LuceneConstants();
+  private ArrayList<String> pathList = new ArrayList<String>();
+  private Indexer indexer;
+  private Searcher searcher;
    
   public  LuceneQuery (String searchingWord) {
 	
@@ -30,25 +30,7 @@ public class LuceneQuery {
       }
 	
    }
-   /*public static void main (String[] argv) {
-	   System.out.println(DATA_DIR);
-	   ArrayList<String> pathList = new ArrayList<String>();
-	   LuceneQuery tester;
-	      try {
-	      tester = new LuceneQuery();
-	      	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
-	          	tester.createIndex();
-	          }
-	      	pathList =  tester.search("mosquée", pathList);
-	      
-	      System.out.println("array "+pathList);
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      } catch (ParseException e) {
-	         e.printStackTrace();
-	      }
-   }*/
-   
+  
    
    public ArrayList<String> getPathList() {
 	   return pathList;
@@ -64,14 +46,14 @@ private void createIndex() throws IOException {
 		      indexer = new Indexer(LuceneConstants.INDEX_DIR);
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
-		      numIndexed = indexer.createIndex(DATA_DIR, new TextFileFilter());
+		      numIndexed = indexer.createIndex(dataDir, new TextFileFilter());
 		      long endTime = System.currentTimeMillis();
 		      indexer.close();
 		      System.out.println(numIndexed+" File indexed, time taken: "
 		         +(endTime-startTime)+" ms");
 	 
    }	   
-   private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
+private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
       searcher = new Searcher(LuceneConstants.INDEX_DIR);
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);

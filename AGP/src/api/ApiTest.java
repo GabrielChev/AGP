@@ -7,17 +7,20 @@ import java.text.ParseException;
 
 public class ApiTest {
 	public static void main (String[] argv) throws SQLException {
-		try {
-			String path = path = new File(".").getCanonicalPath();
-			System.out.println(path);
-			new ApiLucene().sqlJoinLuceneQuery("SELECT name,type,longitude,latitude,id_isle,description FROM TouristicSite WHERE type= 'activity' with balade ");
-		} catch (IOException e) {
+
 			
-			e.printStackTrace();
-		} catch (ParseException e) {
+
+			try {
+				new ApiLucene().sqlJoinLuceneQuery("SELECT name,type,longitude,latitude,id_isle,description FROM TouristicSite WHERE type= 'historic' with musée mosquée");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
 			
-			e.printStackTrace();
-		}
+		
 		
 	}
 	

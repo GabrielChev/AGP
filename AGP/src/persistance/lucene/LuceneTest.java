@@ -9,7 +9,8 @@ public class LuceneTest {
 	public static void main (String[] argv) throws SQLException {
 		System.out.println("main test ");
 	
-		LuceneFinalResults luceneQuery1 = new LuceneFinalResults("mosquée","SELECT name,type,longitude,latitude,description,id_isle  FROM TouristicSite WHERE type = 'historic'");
+		LuceneFinalResults luceneQuery1 = new LuceneFinalResults();
+		luceneQuery1.LuceneSearch("mosquée","SELECT name,type,longitude,latitude,description,id_isle  FROM TouristicSite WHERE type = 'historic'");
 		
 	}
 

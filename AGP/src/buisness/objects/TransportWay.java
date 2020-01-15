@@ -4,6 +4,7 @@ public class TransportWay {
 
 		private String type;
 		private double kilometerPrice;
+		private double kilometerDuration;
 		
 		public TransportWay(String type, double kilometerPrice)
 		{

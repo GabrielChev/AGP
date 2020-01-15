@@ -8,6 +8,7 @@ public class TouristicSite {
 		private double longitude;
 		private double latitude;
 		private double price;
+		private String IsleName; 
 		
 		
 		public TouristicSite(String name, String type, String description, double longitude, double latitude, double price)

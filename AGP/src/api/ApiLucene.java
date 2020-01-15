@@ -21,10 +21,11 @@ public class ApiLucene {
 		
 	}
 	
-	 public static ArrayList<String> sqlJoinLuceneQuery(String query) throws IOException, ParseException {
+	 public static  void sqlJoinLuceneQuery(String query) throws IOException, ParseException {
 	        String withQuery = "";
 	        String sqlQuery = "";
 	        String[] queryDecomposed;
+	        ArrayList<String> ListOfResults  = new ArrayList(); 
 	        
 	        queryDecomposed = query.split("with ");
 	        sqlQuery = queryDecomposed[0];
@@ -32,18 +33,19 @@ public class ApiLucene {
 	        
 	        System.out.println("SQL Query : "+sqlQuery);
 	        System.out.println("Words : "+ withQuery);
-
+	        LuceneFinalResults finaleResult = new LuceneFinalResults(); 
 	        try {
-				return new LuceneFinalResults(withQuery, sqlQuery).getQueryResult();
+	        	ListOfResults = finaleResult.LuceneSearch(withQuery, sqlQuery);
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return null;
+		
 	    }
 	
-	public static void addText(String text, int c) throws IOException
+	public  void addText(String text, int fileNum) throws IOException
 	{
-		String path = new String("src/persistence/description/"+c);
+		String path = new String("src/persistence/description/"+fileNum);
 		System.out.println(path);
 		BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 	    writer.append(text);

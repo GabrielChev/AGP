@@ -16,9 +16,18 @@ public class LuceneFinalResults {
 		
 		private ArrayList<String> selectedFiles =  new ArrayList<String>();
 		private ArrayList<String> queryResult =  new ArrayList<String>();
+		private ArrayList<String> queryResultQ1 =  new ArrayList<String>();
 		private ArrayList<String> queryResultR1 = new ArrayList<String>();
 		private String query="";
-		public  LuceneFinalResults(String SearchingWord , String query) throws SQLException {
+		
+		
+		public  LuceneFinalResults() {}
+		
+		
+		public ArrayList<String> LuceneSearch (String SearchingWord , String query) throws SQLException {
+			
+		
+			
 			String fileSelected = "";
 			String lowerQuery = "";
 			String firsrQuery = "";
@@ -67,14 +76,14 @@ public class LuceneFinalResults {
 			 
 			 System.out.println("EXCUTING QUERY ...");
 			 
-			 queryResult = excuteResult(firsrQuery);
+			 queryResultQ1 = excuteResult(firsrQuery);
 			 
-			 System.out.println(queryResult);
+			 System.out.println(queryResultQ1);
 			 System.out.println("JOIN THE RESULT OF QUERY AND LUCENE SEARCH");
 			 
-			 for (int i =0 ; i< queryResult.size();i++) {
+			 for (int i =0 ; i< queryResultQ1.size();i++) {
 				 for(int j=0; j< selectedFiles.size();j++) {
-						if(queryResult.get(i).contains(selectedFiles.get(j))) {
+						if(queryResultQ1.get(i).contains(selectedFiles.get(j))) {
 							queryResultR1.add(queryResult.get(i));
 						 }
 				}
@@ -87,8 +96,7 @@ public class LuceneFinalResults {
 			 System.out.println(queryResultR1);
 			 
 				
-					 
-			 
+			return queryResultR1;
 			 
 		}
 
@@ -100,6 +108,8 @@ public class LuceneFinalResults {
 		public void setQueryResult(ArrayList<String> queryResult) {
 			this.queryResult = queryResult;
 		}
+		
+		
 		public ArrayList<String> excuteResult(String query) throws SQLException {
 
 			try {

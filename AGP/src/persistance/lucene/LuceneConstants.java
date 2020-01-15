@@ -8,19 +8,18 @@ public class LuceneConstants {
 	public static final String FILE_NAME = "filename";
 	public static final String FILE_PATH = "filepath";
 	public static final int MAX_SEARCH = 10;
-	public static final String INDEX_DIR = "./AGP/src/persistance/Index";
+	public static final String INDEX_DIR = "./Users/macbookpro/git/AGP/AGP/src/persistance/Index";
 	
 	public String path = null;
 	public String LuceneConstants() {
 		 String path = "";
 		try {
 			path = new File(".").getCanonicalPath();
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 path = path+"./AGP/src/persistance/description";
+		 path ="/Users/macbookpro/git/AGP/AGP/src/persistance/description";
 		 return path;
 	}
 

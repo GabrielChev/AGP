@@ -15,8 +15,17 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 public class Indexer {
+	
+	
+	
+	
 	private IndexWriter writer;
+	
+	
+	
 	public Indexer (String indexDirectoryPath) throws IOException {
+		
+		
 		Directory indexDirectory = 
 				FSDirectory.open(Paths.get(indexDirectoryPath));
 		StandardAnalyzer analyzer = new StandardAnalyzer();
@@ -27,7 +36,9 @@ public class Indexer {
 	public void close() throws CorruptIndexException, IOException {
 		writer.close();
 	}
-	private Document getDocument(File file) throws IOException {
+	
+	
+	private Document documentsBuild(File file) throws IOException {
 		Document document = new Document();
 	    TextField contentField = new TextField(LuceneConstants.CONTENTS, new FileReader(file));
 	    TextField fileNameField = new TextField(LuceneConstants.FILE_NAME, file.getName(), TextField.Store.YES);
@@ -42,11 +53,11 @@ public class Indexer {
 	
 	private void indexFile(File file) throws IOException {
 		
-		Document document = getDocument(file);
+		Document document = documentsBuild(file);
 		writer.addDocument(document);
 	}
 	
-	   public int createIndex(String dataDirPath, FileFilter filter) throws IOException {
+	public int createIndex(String dataDirPath, FileFilter filter) throws IOException {
 			      File[] files = new File(dataDirPath).listFiles();
 			      for (File file : files) {
 			         if(!file.isDirectory()

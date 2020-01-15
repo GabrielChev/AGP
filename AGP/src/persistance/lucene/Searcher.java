@@ -17,9 +17,9 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 public class Searcher {
 	
-   IndexSearcher indexSearcher;
-   QueryParser queryParser;
-   Query query;
+   private IndexSearcher indexSearcher;
+   private QueryParser queryParser;
+   private Query query;
    
    public Searcher(String indexDirectoryPath) 
       throws IOException {

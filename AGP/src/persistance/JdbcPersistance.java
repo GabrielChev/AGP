@@ -57,10 +57,10 @@ public class JdbcPersistance  {
 	
 	
 	
-/*	private void addClient(int idEntry) {
+private void InsertTouristicSite(TouristicSite touristicSite) {
 		try {
 
-			String insertAddressQuery = "INSERT INTO client (arrival_time, service_start_time, departure_time, "
+			String insertAddressQuery = "INSERT INTO TouristicSite (arrival_time, service_start_time, departure_time, "
 					+ "is_served, priority, entry_id) VALUES (?,?,?,?,?,?)";
 
 			PreparedStatement preparedStatement = JdbcConnection.getConnection().prepareStatement(insertAddressQuery);
