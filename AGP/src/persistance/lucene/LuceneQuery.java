@@ -19,6 +19,7 @@ public class LuceneQuery {
   public  LuceneQuery (String searchingWord) {
 	
       try {
+    	  System.out.println(LuceneConstants.INDEX_DIR);
       	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
          	createIndex();
          }

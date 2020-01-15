@@ -13,6 +13,8 @@ import buisness.objects.TouristicSite;
 
 public class JdbcPersistance  {
 	
+	
+	
 	public TouristicSite selectTouristicSiteByPath(String descriptionAttribut) {
 		TouristicSite site = null;
 		try {

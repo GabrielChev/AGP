@@ -25,14 +25,14 @@ public class LuceneFinalResults {
 			 
 			 
 			 fileSelected = generateString(selectedFiles); 
-			  query = query+" WHERE description IN "+fileSelected;
-		
-			
-			this.query = query;
-		
-			 queryResult = mergeResult();
-			 System.out.println("Lucene Search Found File : " + selectedFiles);
-			 System.out.println("Query Result :  "+ queryResult);
+			 if (fileSelected != null) {
+				 query = query+" WHERE description IN "+fileSelected;
+				 this.query = query;
+				 queryResult = mergeResult();
+			 
+			 }
+			System.out.println("Lucene Search Found File : " + selectedFiles);
+			System.out.println("Query Result :  "+ queryResult);
 			 
 		}
 
@@ -77,14 +77,17 @@ public class LuceneFinalResults {
 		}
 		public  String generateString(ArrayList<String> selectedFiles) {
 			String filesSelected = "(";
-			for (int i = 0 ; i< selectedFiles.size();i++) {
-				if(i == selectedFiles.size()-1) {
-					filesSelected += "'"+selectedFiles.get(i)+"')";
-				}else {
-					filesSelected += "'"+selectedFiles.get(i)+"',";
-			
+			if(selectedFiles.size() == 0) {
+				filesSelected = null;
+			}else {
+				for (int i = 0 ; i< selectedFiles.size();i++) {
+					if(i == selectedFiles.size()-1) {
+						filesSelected += "'"+selectedFiles.get(i)+"')";
+					}else {
+						filesSelected += "'"+selectedFiles.get(i)+"',";
+					}
 				}
-			}	
+			}
 			return filesSelected;
 		}
 }

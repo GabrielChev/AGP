@@ -9,7 +9,7 @@ public class LuceneTest {
 	public static void main (String[] argv) throws SQLException {
 		System.out.println("main test ");
 	
-		LuceneFinalResults luceneQuery1 = new LuceneFinalResults("mosquée","SELECT name,type,longitude,latitude,id_isle  FROM TouristicSite");
+		LuceneFinalResults luceneQuery1 = new LuceneFinalResults("balade","SELECT name,type,longitude,latitude,id_isle  FROM TouristicSite");
 		
 	}
 
