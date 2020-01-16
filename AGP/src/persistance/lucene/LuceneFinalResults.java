@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -31,7 +33,7 @@ public class LuceneFinalResults {
 			String fileSelected = "";
 			String lowerQuery = "";
 			String firsrQuery = "";
-			
+			Set set = new HashSet();
 			System.out.println("*** LUCENE FIRST  ***");
 			long startTime = System.currentTimeMillis();	
 			LuceneQuery luceneQuery = new LuceneQuery(SearchingWord);
@@ -75,7 +77,6 @@ public class LuceneFinalResults {
 			 startTime = System.currentTimeMillis();
 			 
 			 System.out.println("EXCUTING QUERY ...");
-			 
 			 queryResultQ1 = excuteResult(firsrQuery);
 			 
 			 System.out.println(queryResultQ1);
@@ -84,19 +85,26 @@ public class LuceneFinalResults {
 			 for (int i =0 ; i< queryResultQ1.size();i++) {
 				 for(int j=0; j< selectedFiles.size();j++) {
 						if(queryResultQ1.get(i).contains(selectedFiles.get(j))) {
-							queryResultR1.add(queryResult.get(i));
-						 }
+							
+								queryResultR1.add(queryResult.get(i));
+							
+							
+						}
 				}
-
 		    }
+			 queryResultQ1.clear();
+			 for(int i =0 ; i < selectedFiles.size();i++) {
+				 queryResultQ1.add(queryResultR1.get(i));
+			 }
+			 
 			 endTime = System.currentTimeMillis();
 		      System.out.println("Time taken: "
 				         +(endTime-startTime)+" ms");
 			 System.out.println("RESULT OF JOINING");
-			 System.out.println(queryResultR1);
+			 System.out.println(queryResultQ1);
 			 
 				
-			return queryResultR1;
+			return queryResultQ1;
 			 
 		}
 

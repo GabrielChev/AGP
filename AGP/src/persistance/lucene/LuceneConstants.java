@@ -12,18 +12,18 @@ public class LuceneConstants {
 	
 	public String path = null;
 	public String LuceneConstants() {
+		File file = new File("Descriprion");
 		String path = "";
 		setINDEX_DIR(createIndexDirectory());
 	
 		try {
 			
 			path = new File(".").getCanonicalPath();
-			System.out.println(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 path = path+"/AGP/src/persistance/description";
+		 path = file.getPath();//path+"/AGP/src/persistance/description";
 		 return path;
 	}
 	
@@ -35,7 +35,7 @@ public class LuceneConstants {
 	}
 	
 	public String createIndexDirectory() {
-		File file = new File ("./Index");
+		File file = new File ("Index");
 		if(!file.exists()) {
 			if(file.mkdir()) {
 				System.out.println("Index Directory created");
@@ -43,19 +43,11 @@ public class LuceneConstants {
 				System.out.println("Failed to create index directory!");
 			}
 		}
-		return file.getAbsolutePath();
+		return file.getPath();
 		
 	}
 	
-	public void createDescriptionDirectory() {
-		File file = new File ("./Description");
-		if(!file.exists()) {
-			if(file.mkdir()) {
-				System.out.println("Description Directory created");
-			} else {
-				System.out.println("Failed to create Description directory!");
-			}
-		}
-	}
+	
 
+	
 }

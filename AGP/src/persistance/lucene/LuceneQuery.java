@@ -44,11 +44,10 @@ public class LuceneQuery {
 
 
 private void createIndex() throws IOException {
-	LuceneConstants lc = new LuceneConstants();
-	  lc.LuceneConstants();
-
-	  System.out.println("LuceneQuery : "+lc.getINDEX_DIR());
-
+		LuceneConstants lc = new LuceneConstants();
+		lc.LuceneConstants();
+		File file = new File (lc.getINDEX_DIR());
+		emptyDirectory(file);	
 		      indexer = new Indexer(lc.getINDEX_DIR());
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
@@ -60,7 +59,8 @@ private void createIndex() throws IOException {
 	 
    }	   
 private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
-	LuceneConstants lc = new LuceneConstants();
+	  LuceneConstants lc = new LuceneConstants();
+	  lc.LuceneConstants();
       searcher = new Searcher(lc.getINDEX_DIR());
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);
@@ -97,5 +97,13 @@ private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathLis
 	   
 	   return newPath;
    }
+	public void emptyDirectory(File folder){
+		   for(File file : folder.listFiles()){
+		    	  System.out.println("file name "+file.getName());
+			       file.delete();
+
+		      
+		   }
+		}
 }
 

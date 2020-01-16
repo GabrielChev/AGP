@@ -7,10 +7,9 @@ public class LuceneTest {
 	private static ArrayList<String> selectedFiles =  new ArrayList<String>();
 	
 	public static void main (String[] argv) throws SQLException {
-		System.out.println("main test ");
-	
+		
 		LuceneFinalResults luceneQuery1 = new LuceneFinalResults();
-		luceneQuery1.LuceneSearch("mosquée","SELECT name,type,longitude,latitude,description,id_isle  FROM TouristicSite WHERE type = 'historic'");
+		luceneQuery1.LuceneSearch("musée","SELECT name,type,longitude,latitude,description,id_isle  FROM TouristicSite WHERE type = 'historic'");
 		
 	}
 

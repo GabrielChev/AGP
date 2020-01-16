@@ -30,8 +30,6 @@ public class LuceneTester {
    }*/
    public static void main (String[] argv) {
 	   LuceneConstants lc = new LuceneConstants();
-		  lc.LuceneConstants();
-
 	   System.out.println(DATA_DIR);
 	   ArrayList<String> pathList = new ArrayList<String>();
 	   LuceneTester tester;
@@ -54,8 +52,7 @@ public class LuceneTester {
    
    private void createIndex() throws IOException {
 	   LuceneConstants lc = new LuceneConstants();
-		  lc.LuceneConstants();
-
+	   lc.LuceneConstants();
 		      indexer = new Indexer(lc.getINDEX_DIR());
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
