@@ -27,7 +27,7 @@ public class Excursion {
 		int j = 1;
 		double dis = 0;
 		
-		CalculateDistanceBetweenSites cal = new CalculateDistanceBetweenSites();
+		CalculateDistance cal = new CalculateDistance();
 		
 		while(j < this.sites.size()) {
 			dis = cal.calculateDistance(this.sites.get(i), this.sites.get(j));

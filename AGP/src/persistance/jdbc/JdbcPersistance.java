@@ -4,10 +4,7 @@ package persistance.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import buisness.objects.Transport;
 import buisness.objects.Hotel;
 import buisness.objects.TouristicSite;
@@ -19,26 +16,31 @@ public class JdbcPersistance  {
 	
 	
 	public  JdbcPersistance() {}
-		
-		
-		
+	
+	
+	
 	public ArrayList<TouristicSite>  FetchTourisitcSites(String query) throws Exception {
-		ArrayList<TouristicSite> queryResult = null ; 
-				String selectAddressQuery = query;
-				PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
+		ArrayList<TouristicSite> queryResult = new ArrayList<TouristicSite>() ; 
+			
+				PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(query);
 
 				ResultSet result = preparedStatement.executeQuery();
 				TouristicSite tourisitcsite  = new TouristicSite();
-				while (result.next()) {
-					tourisitcsite.setName(result.getString("name"));
+		
+				
+		while (result.next()) {
+			 
+					tourisitcsite.setName(result.getString("name"));	
 					tourisitcsite.setType(result.getString("type"));
 					tourisitcsite.setLongitude(result.getFloat("longitude"));
 					tourisitcsite.setLatitude(result.getFloat("latitude"));
 					tourisitcsite.setPrice(result.getFloat("price"));
-					tourisitcsite.setIsleName(result.getString("isleName"));
+					tourisitcsite.setIsleName(result.getString("id_isle"));
 					tourisitcsite.setDuration(result.getFloat("duration"));
 					tourisitcsite.setDescription(result.getString("description"));
+					
 					queryResult.add(tourisitcsite);
+	
 			
 				}
 				
@@ -47,13 +49,8 @@ public class JdbcPersistance  {
 				
 	}
 	
-	
-		
-	
-	
-	
 	public ArrayList<Transport> FetchTransportsWays(String query) throws Exception{
-		ArrayList<Transport> queryResult = null ; 
+		ArrayList<Transport> queryResult = new ArrayList<Transport>() ;
 		String selectAddressQuery = query;
 		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
 
@@ -76,7 +73,7 @@ public class JdbcPersistance  {
 	
 	
 	public ArrayList<Hotel> FetchHotels(String query) throws Exception{
-		ArrayList<Hotel> queryResult = null ; 
+		ArrayList<Hotel> queryResult = new ArrayList<Hotel>() ; 
 		String selectAddressQuery = query;
 		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
 
@@ -91,9 +88,6 @@ public class JdbcPersistance  {
 			hotel.setLatitude(result.getFloat("laitude")) ;
 			hotel.setRating(result.getFloat("rating"));
 			hotel.setIsleName(result.getString("isleName")) ;
-				
-			
-		
 			
 			queryResult.add(hotel);
 	
@@ -103,7 +97,6 @@ public class JdbcPersistance  {
 		return queryResult;
 		
 }
-
 	
 }
 

@@ -36,8 +36,7 @@ public class Search {
 	 * @return a list of hotel
 	 */
 
-	public Search(String keyWords, String name, double offerPriceMin,
-			double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days) {
+	public Search(String keyWords, String name, double offerPriceMin, double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days) {
 		this.keyWords = keyWords;
 		this.name = name;
 		this.offerPriceMin = offerPriceMin;

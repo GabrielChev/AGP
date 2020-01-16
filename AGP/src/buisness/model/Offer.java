@@ -1,28 +1,27 @@
 package buisness.model;
 
+import java.util.ArrayList;
 
 public class Offer {
 	
 	private Stay proposedStay;
-	private Excursion proposedExcursion;
+	private ArrayList<Excursion> listExcursion;
 	
 	private double totalePrice;
 	
-	public Offer(Stay proposedStay , Excursion proposedExcursion) {
+	public Offer(Stay proposedStay , ArrayList<Excursion> listExcursion) {
 		this.setProposedStay(proposedStay);
-		this.setProposedExcursion(proposedExcursion);
-		
-		
+		this.setProposedExcursion(listExcursion);
 	}
 
 
-	public Excursion getProposedExcursion() {
-		return proposedExcursion;
+	public ArrayList<Excursion> getProposedExcursion() {
+		return listExcursion;
 	}
 
 
-	public void setProposedExcursion(Excursion proposedExcursion) {
-		this.proposedExcursion = proposedExcursion;
+	public void setProposedExcursion(ArrayList<Excursion> listExcursion) {
+		this.listExcursion = listExcursion;
 	}
 
 
@@ -41,7 +40,11 @@ public class Offer {
 	}
 	
 	double calculateTotalePrice() {
-		return this.totalePrice = this.proposedStay.getHotelPrice() + this.proposedExcursion.getExcursionPrice();
+		int sumExcursionPrice = 0;
+		for(int i = 0; i < listExcursion.size(); i++){
+			sumExcursionPrice += this.listExcursion.get(i).getExcursionPrice();
+		}			
+		return this.totalePrice = this.proposedStay.getHotelPrice() + sumExcursionPrice;
 	}
 
 }

@@ -9,9 +9,4 @@ public class ExcursionBuilder {
 	public ExcursionBuilder() {
 
 	}
-	
-	public ExcursionBuilder buildExcursion(ExcursionBuilder excursionBuilder) {
-		return excursionBuilder;
-	}
-
 }

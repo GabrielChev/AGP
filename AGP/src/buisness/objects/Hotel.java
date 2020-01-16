@@ -8,8 +8,23 @@ public class Hotel {
 	private double longitude;
 	private double latitude;
 	private double rating;
-	private String IsleName;
+	private String isleName;
 		
+	public Hotel() {
+		
+	};
+	
+	public Hotel(String name, String beach, double price, double longitude, double latitude, double rating, String isleName) {
+		this.name = name;
+		this.beach = beach;
+		this.price = price;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.rating = rating;
+		this.isleName = isleName;
+	};
+	
+
 	public String getName() {
 		return name;
 	}
@@ -47,10 +62,10 @@ public class Hotel {
 		this.rating = rating;
 	}
 	public String getIsleName() {
-		return IsleName;
+		return isleName;
 	}
 	public void setIsleName(String isleName) {
-		IsleName = isleName;
+		isleName = isleName;
 	} 
 	
 	
