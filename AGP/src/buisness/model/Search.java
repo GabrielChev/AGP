@@ -2,6 +2,11 @@ package buisness.model;
 
 import buisness.objects.TouristicSite;
 
+/**
+ * Contains methods to get informations of the research on a table
+ * 
+ */
+
 public class Search {
 
 	private String keyWords;
@@ -12,16 +17,29 @@ public class Search {
 	private float hotelRatingMin;
 	private float hotelRatingMax;
 	private int days;
+	private TouristicSite touristicSite ;
+	
 
 	public Search() {
 		
 	}
+	
+	/**
+	 * Get hotels which match with the search criteria in order of relevance
+	 * 
+	 * @param keyWords
+	 * @param offerPriceMin
+	 * @param offerPriceMax
+	 * @param hotelRaitingMin
+	 * @param hotelRaitingMax
+	 * 
+	 * @return a list of hotel
+	 */
 
 	public Search(String keyWords, String name, double offerPriceMin,
 			double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days) {
 		this.keyWords = keyWords;
 		this.name = name;
-	
 		this.offerPriceMin = offerPriceMin;
 		this.offerPriceMax = offerPriceMax;
 		this.confort = confort;
@@ -100,6 +118,20 @@ public class Search {
 	public void setDays(int days) {
 		this.days = days;
 	}
+	
+	
+	
+
+
+	public TouristicSite getTouristicSite() {
+		return touristicSite;
+	}
+
+	public void setTouristicSite(TouristicSite touristicSite) {
+		this.touristicSite = touristicSite;
+	}
+
+
 
 	
 }
