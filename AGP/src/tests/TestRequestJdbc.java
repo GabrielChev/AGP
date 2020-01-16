@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import persistance.JdbcConnection;
+import persistance.jdbc.JdbcConnection;
 
 public class TestRequestJdbc {
 

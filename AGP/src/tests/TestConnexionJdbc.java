@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import persistance.JdbcConnection;
+import persistance.jdbc.JdbcConnection;
 
 public class TestConnexionJdbc {
 

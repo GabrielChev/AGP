@@ -9,24 +9,25 @@ import java.util.Set;
 
 import com.mysql.jdbc.PreparedStatement;
 
+import buisness.objects.TouristicSite;
+import persistance.jdbc.JdbcConnection;
+import persistance.jdbc.JdbcPersistance;
 import java.sql.Connection;
 import java.sql.DriverManager;
-
-import persistance.JdbcConnection;
 
 public class LuceneFinalResults {
 		
 		private ArrayList<String> selectedFiles =  new ArrayList<String>();
-		private ArrayList<String> queryResult =  new ArrayList<String>();
-		private ArrayList<String> queryResultQ1 =  new ArrayList<String>();
-		private ArrayList<String> queryResultR1 = new ArrayList<String>();
+		private ArrayList<TouristicSite> queryResult =  new ArrayList<TouristicSite>();
+		private ArrayList<TouristicSite> queryResultQ1 =  new ArrayList<TouristicSite>();
+		private ArrayList<TouristicSite> queryResultR1 = new ArrayList<TouristicSite>();
 		private String query="";
 		
 		
 		public  LuceneFinalResults() {}
 		
 		
-		public ArrayList<String> LuceneSearch (String SearchingWord , String query) throws SQLException {
+		public ArrayList<TouristicSite> LuceneSearch (String SearchingWord , String query) throws SQLException {
 			
 		
 			
@@ -54,8 +55,13 @@ public class LuceneFinalResults {
 			 	
 					 System.out.println("query "+ query);
 						
-						
-					 queryResult = excuteResult(query);
+					 JdbcPersistance persistance = new JdbcPersistance();
+					 try {
+						queryResult = persistance.FetchTourisitcSites(firsrQuery);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				
 				 
 				 }else {
@@ -77,14 +83,21 @@ public class LuceneFinalResults {
 			 startTime = System.currentTimeMillis();
 			 
 			 System.out.println("EXCUTING QUERY ...");
-			 queryResultQ1 = excuteResult(firsrQuery);
+			 JdbcPersistance persistance = new JdbcPersistance();
+			 try {
+				queryResultQ1 = persistance.FetchTourisitcSites(firsrQuery);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
 			 
 			 System.out.println(queryResultQ1);
 			 System.out.println("JOIN THE RESULT OF QUERY AND LUCENE SEARCH");
 			 
 			 for (int i =0 ; i< queryResultQ1.size();i++) {
 				 for(int j=0; j< selectedFiles.size();j++) {
-						if(queryResultQ1.get(i).contains(selectedFiles.get(j))) {
+						if(queryResultQ1.get(i).getDescription().contains(selectedFiles.get(j))) {
 							
 								queryResultR1.add(queryResult.get(i));
 							
@@ -110,38 +123,15 @@ public class LuceneFinalResults {
 
 		
 		
-		public ArrayList<String> getQueryResult() {
+		public ArrayList<TouristicSite> getQueryResult() {
 			return queryResult;
 		}
-		public void setQueryResult(ArrayList<String> queryResult) {
+		public void setQueryResult(ArrayList<TouristicSite> queryResult) {
 			this.queryResult = queryResult;
 		}
 		
 		
-		public ArrayList<String> excuteResult(String query) throws SQLException {
-
-			try {
-				
-				
-				String selectAddressQuery = query;
-				PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
-
-				ResultSet result = preparedStatement.executeQuery();
-				String line = "";
-				while (result.next()) {
-					line = result.getString("name") +";"+result.getString("type")+";"+result.getFloat("longitude")+
-							";"+result.getFloat("latitude")+";"+result.getString("description")+";"+result.getInt("id_isle");
-					queryResult.add(line);
-			
-				}
-				
-				preparedStatement.close();
-				
-			} catch (SQLException se) {
-				System.err.println(se.getMessage());
-			}
-			return queryResult;
-		}
+		
 		public String getQuery() {
 			return query;
 		}

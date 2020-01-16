@@ -1,12 +1,26 @@
 package buisness.objects;
 
-public class TransportWay {
+public class Transport {
 
 		private String type;
 		private double kilometerPrice;
 		private double kilometerDuration;
 		
-		public TransportWay(String type, double kilometerPrice)
+		
+		public double getKilometerDuration() {
+			return kilometerDuration;
+		}
+
+
+		public void setKilometerDuration(double kilometerDuration) {
+			this.kilometerDuration = kilometerDuration;
+		}
+
+
+		public Transport() {}
+		
+		
+		public Transport(String type, double kilometerPrice)
 		{
 			this.type = type;
 			this.kilometerPrice = kilometerPrice;

@@ -21,11 +21,11 @@ public class ApiLucene {
 		
 	}
 	
-	 public void sqlJoinLuceneQuery(String query) throws IOException, ParseException {
+	 public static   ArrayList<TouristicSite> sqlJoinLuceneQuery(String query) throws IOException, ParseException {
 	        String withQuery = "";
 	        String sqlQuery = "";
 	        String[] queryDecomposed;
-	        ArrayList<String> ListOfResults  = new ArrayList(); 
+	        ArrayList<TouristicSite> ListOfResults  = new ArrayList(); 
 	        
 	        queryDecomposed = query.split("with ");
 	        sqlQuery = queryDecomposed[0];
@@ -40,11 +40,11 @@ public class ApiLucene {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return ListOfResults;
 	        
 	        
 	        
-	        
-	        
+	       
 	        
 		
 	    }
@@ -54,6 +54,7 @@ public class ApiLucene {
 		String path = new String("src/persistence/description/"+fileNum);
 		System.out.println(path);
 		BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+		
 	    writer.append(text);
 	     
 	    writer.close();

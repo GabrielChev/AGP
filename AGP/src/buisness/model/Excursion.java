@@ -13,7 +13,7 @@ public class Excursion {
 		
 	//the first parameter must be the list of sites to be visited during this excursion
 	//the second parameter should be the list of transports to be used during this excursion
-	Excursion(ArrayList<TouristicSite> sites , ArrayList<TransportOutil> transports){
+	public Excursion(ArrayList<TouristicSite> sites , ArrayList<TransportOutil> transports){
 		this.sites=sites;
 		this.transports = transports;	
 	}
