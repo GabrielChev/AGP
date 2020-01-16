@@ -18,8 +18,8 @@ public class LuceneConstants {
 		URL url = LuceneConstants.class.getResource("");
 		String [] paths = url.getPath().split("bin");
 		
-		setINDEX_DIR(paths[0]+"index");
-
+		setINDEX_DIR(adaptPath(paths[0]+"index"));
+		
 		 url = LuceneConstants.class.getResource("");
 
 		paths = url.getPath().split("bin");
@@ -56,6 +56,17 @@ public class LuceneConstants {
 		return paths[0]+"index";
 		
 	}*/
+	public String adaptPath (String path) {
+		String adaptedPath = path;
+		if(path.charAt(0) == '/' && path.charAt(1) == 'C' ) {
+			adaptedPath = "";
+			for (int i=1;i < path.toCharArray().length;i++) {
+				
+				adaptedPath += path.toCharArray()[i];
+			}
+		}
+		return adaptedPath;
+	}
 	
 	
 
