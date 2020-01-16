@@ -9,12 +9,7 @@ public class Hotel {
 	private double latitude;
 	private double rating;
 	private String IsleName;
-	
-	
-	
-	
-	
-	
+		
 	public String getName() {
 		return name;
 	}

@@ -10,7 +10,7 @@ public class TouristicSiteConverter {
 	
 	}
 
-	public TouristicSite BuildTouristicSite(ArrayList<String> ResultQuery) {
+	public ArrayList<TouristicSite> BuildTouristicSite(ArrayList<String> ResultQuery) {
 		
 		
 		
