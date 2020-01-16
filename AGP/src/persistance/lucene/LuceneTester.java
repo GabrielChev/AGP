@@ -29,12 +29,15 @@ public class LuceneTester {
 	return pathList;
    }*/
    public static void main (String[] argv) {
+	   LuceneConstants lc = new LuceneConstants();
+		  lc.LuceneConstants();
+
 	   System.out.println(DATA_DIR);
 	   ArrayList<String> pathList = new ArrayList<String>();
 	   LuceneTester tester;
 	      try {
 	      tester = new LuceneTester();
-	      	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
+	      	 if (isDirectoryEmpty(new File(lc.getINDEX_DIR()))) {
 	          }
 	          	tester.createIndex();
 
@@ -50,7 +53,10 @@ public class LuceneTester {
    
    
    private void createIndex() throws IOException {
-		      indexer = new Indexer(LuceneConstants.INDEX_DIR);
+	   LuceneConstants lc = new LuceneConstants();
+		  lc.LuceneConstants();
+
+		      indexer = new Indexer(lc.getINDEX_DIR());
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
 		      System.out.println(DATA_DIR);
@@ -62,7 +68,10 @@ public class LuceneTester {
 	 
    }	   
    private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
-      searcher = new Searcher(LuceneConstants.INDEX_DIR);
+	   LuceneConstants lc = new LuceneConstants();
+		  lc.LuceneConstants();
+
+      searcher = new Searcher(lc.getINDEX_DIR());
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);
       long endTime = System.currentTimeMillis();

@@ -17,9 +17,10 @@ public class LuceneQuery {
   private Searcher searcher;
    
   public  LuceneQuery (String searchingWord) {
-	
+	  LuceneConstants lc = new LuceneConstants();
+	  lc.LuceneConstants();
       try {
-      	 if (isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
+      	 if (isDirectoryEmpty(new File(lc.getINDEX_DIR()))) {//isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
          	createIndex();
          }
          pathList = search(searchingWord,pathList);
@@ -43,7 +44,12 @@ public class LuceneQuery {
 
 
 private void createIndex() throws IOException {
-		      indexer = new Indexer(LuceneConstants.INDEX_DIR);
+	LuceneConstants lc = new LuceneConstants();
+	  lc.LuceneConstants();
+
+	  System.out.println("LuceneQuery : "+lc.getINDEX_DIR());
+
+		      indexer = new Indexer(lc.getINDEX_DIR());
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
 		      numIndexed = indexer.createIndex(dataDir, new TextFileFilter());
@@ -54,7 +60,8 @@ private void createIndex() throws IOException {
 	 
    }	   
 private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathList) throws IOException, ParseException {
-      searcher = new Searcher(LuceneConstants.INDEX_DIR);
+	LuceneConstants lc = new LuceneConstants();
+      searcher = new Searcher(lc.getINDEX_DIR());
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);
       long endTime = System.currentTimeMillis();
