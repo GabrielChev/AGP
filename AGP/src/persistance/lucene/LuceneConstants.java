@@ -12,7 +12,7 @@ public class LuceneConstants {
 	
 	public String path = null;
 	public String LuceneConstants() {
-		File file = new File("Descriprion");
+		File file = new File("descriprion");
 		String path = "";
 		setINDEX_DIR(createIndexDirectory());
 	
@@ -35,7 +35,7 @@ public class LuceneConstants {
 	}
 	
 	public String createIndexDirectory() {
-		File file = new File ("Index");
+		File file = new File ("index");
 		if(!file.exists()) {
 			if(file.mkdir()) {
 				System.out.println("Index Directory created");
