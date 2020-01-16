@@ -1,4 +1,4 @@
-package persistance;
+package persistance.jdbc;
 
 
 import java.sql.Connection;

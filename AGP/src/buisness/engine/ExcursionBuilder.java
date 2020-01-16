@@ -6,8 +6,12 @@ import buisness.model.Excursion;
 
 public class ExcursionBuilder {
 
-	public Excursion buildExcursion() {
-		
-		
+	public ExcursionBuilder() {
+
 	}
+	
+	public ExcursionBuilder buildExcursion(ExcursionBuilder excursionBuilder) {
+		return excursionBuilder;
+	}
+
 }

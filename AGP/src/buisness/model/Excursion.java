@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import buisness.objects.TouristicSite;
 
-class Excursion {
+public class Excursion {
 	
 	private ArrayList<TouristicSite> sites;
 	private ArrayList<TransportOutil> transports;

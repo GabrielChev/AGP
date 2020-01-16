@@ -21,7 +21,7 @@ public class ApiLucene {
 		
 	}
 	
-	 public static  void sqlJoinLuceneQuery(String query) throws IOException, ParseException {
+	 public void sqlJoinLuceneQuery(String query) throws IOException, ParseException {
 	        String withQuery = "";
 	        String sqlQuery = "";
 	        String[] queryDecomposed;
