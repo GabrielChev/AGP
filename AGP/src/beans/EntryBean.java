@@ -18,8 +18,7 @@ import buisness.objects.TouristicSite;
 @SessionScoped
 public class EntryBean {
 	private Search search = new Search() ;
-	private int id ;
-	private String object = "hotel" ;
+	private String object ;
 	
 	public String search() {
        if(object.equals("hotel"))
@@ -34,14 +33,6 @@ public class EntryBean {
 	
 	public EntryBean() {
     	object = "hotel";
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getKeyWords() {

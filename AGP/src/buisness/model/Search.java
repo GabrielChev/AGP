@@ -120,9 +120,6 @@ public class Search {
 	}
 	
 	
-	
-
-
 	public TouristicSite getTouristicSite() {
 		return touristicSite;
 	}
