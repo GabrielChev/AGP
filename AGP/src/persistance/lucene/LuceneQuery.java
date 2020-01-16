@@ -17,12 +17,12 @@ public class LuceneQuery {
   private Searcher searcher;
    
   public  LuceneQuery (String searchingWord) {
+	  
 	  LuceneConstants lc = new LuceneConstants();
 	  lc.LuceneConstants();
       try {
-      	 if (isDirectoryEmpty(new File(lc.getINDEX_DIR()))) {//isDirectoryEmpty(new File(LuceneConstants.INDEX_DIR))) {
          	createIndex();
-         }
+         
          pathList = search(searchingWord,pathList);
       } catch (IOException e) {
          e.printStackTrace();
@@ -46,8 +46,7 @@ public class LuceneQuery {
 private void createIndex() throws IOException {
 		LuceneConstants lc = new LuceneConstants();
 		lc.LuceneConstants();
-		File file = new File (lc.getINDEX_DIR());
-		emptyDirectory(file);	
+		emptyDirectory(lc.getINDEX_DIR());	
 		      indexer = new Indexer(lc.getINDEX_DIR());
 		      int numIndexed;
 		      long startTime = System.currentTimeMillis();	
@@ -97,9 +96,9 @@ private  ArrayList<String>  search(String searchQuery, ArrayList<String> pathLis
 	   
 	   return newPath;
    }
-	public void emptyDirectory(File folder){
+	public void emptyDirectory(String folderPath){
+		File folder = new File(folderPath);
 		   for(File file : folder.listFiles()){
-		    	  System.out.println("file name "+file.getName());
 			       file.delete();
 
 		      

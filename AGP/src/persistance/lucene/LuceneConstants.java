@@ -2,29 +2,30 @@ package persistance.lucene;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class LuceneConstants {
 	public static final String CONTENTS = "contents";
 	public static final String FILE_NAME = "filename";
 	public static final String FILE_PATH = "filepath";
 	public static final int MAX_SEARCH = 10;
-	public   String INDEX_DIR = "";
-	
-	public String path = null;
+	private  String INDEX_DIR = "";
+	private  String DESCRIPTION_DIR = "";
+
+
 	public String LuceneConstants() {
-		File file = new File("descriprion");
 		String path = "";
-		setINDEX_DIR(createIndexDirectory());
-	
-		try {
-			
-			path = new File(".").getCanonicalPath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 path = file.getPath();//path+"/AGP/src/persistance/description";
-		 return path;
+		URL url = LuceneConstants.class.getResource("");
+		String [] paths = url.getPath().split("bin");
+		
+		setINDEX_DIR(paths[0]+"index");
+
+		 url = LuceneConstants.class.getResource("");
+
+		paths = url.getPath().split("bin");
+		path = paths[0]+"description";
+		setDESCRIPTION_DIR(path);
+		 return path;		
 	}
 	
 	public String getINDEX_DIR() {
@@ -34,7 +35,14 @@ public class LuceneConstants {
 		INDEX_DIR = iNDEX_DIR;
 	}
 	
-	public String createIndexDirectory() {
+	public String getDESCRIPTION_DIR() {
+		return DESCRIPTION_DIR;
+	}
+
+	public void setDESCRIPTION_DIR(String dESCRIPTION_DIR) {
+		DESCRIPTION_DIR = dESCRIPTION_DIR;
+	}
+	/*public String createIndexDirectory() {
 		File file = new File ("index");
 		if(!file.exists()) {
 			if(file.mkdir()) {
@@ -43,9 +51,11 @@ public class LuceneConstants {
 				System.out.println("Failed to create index directory!");
 			}
 		}
-		return file.getPath();
+		URL url = LuceneConstants.class.getResource("");
+		String [] paths = url.getPath().split("bin");
+		return paths[0]+"index";
 		
-	}
+	}*/
 	
 	
 

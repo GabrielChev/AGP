@@ -25,6 +25,7 @@ public class Searcher {
       throws IOException {
       Directory indexDirectory = 
          FSDirectory.open(Paths.get(indexDirectoryPath));
+      System.out.println("search "+indexDirectoryPath);
       IndexReader reader = DirectoryReader.open(indexDirectory);
       indexSearcher = new IndexSearcher(reader);
       queryParser = new QueryParser(LuceneConstants.CONTENTS,
