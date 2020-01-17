@@ -87,7 +87,6 @@ public class OfferBuilder {
 		}
 		
 		//Get a random hotel in the list
-	
 		nbRandom = random.nextInt(listHotels.size());
 		hotel = listHotels.get(nbRandom);
 		

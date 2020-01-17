@@ -59,7 +59,6 @@ public class LuceneFinalResults {
 					 try {
 						queryResult = persistance.FetchTourisitcSites(firsrQuery);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				
@@ -85,31 +84,16 @@ public class LuceneFinalResults {
 			 System.out.println("EXCUTING QUERY ...");
 			 JdbcPersistance persistance = new JdbcPersistance();
 			 try {
-				queryResultQ1 = persistance.FetchTourisitcSites(firsrQuery);
+				queryResultQ1 = persistance.FetchTourisitcSites("SELECT * FROM TouristicSite where description in "+fileSelected);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			 
 			 
-			 System.out.println(queryResultQ1);
+			
 			 System.out.println("JOIN THE RESULT OF QUERY AND LUCENE SEARCH");
-			 
-			 for (int i =0 ; i< queryResultQ1.size();i++) {
-				 for(int j=0; j< selectedFiles.size();j++) {
-						if(queryResultQ1.get(i).getDescription().contains(selectedFiles.get(j))) {
-							
-								queryResultR1.add(queryResult.get(i));
-							
-							
-						}
-				}
-		    }
-			 queryResultQ1.clear();
-			 for(int i =0 ; i < selectedFiles.size();i++) {
-				 queryResultQ1.add(queryResultR1.get(i));
-			 }
-			 
+			
 			 endTime = System.currentTimeMillis();
 		      System.out.println("Time taken: "
 				         +(endTime-startTime)+" ms");
