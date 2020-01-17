@@ -65,7 +65,7 @@ public class Hotel {
 		return isleName;
 	}
 	public void setIsleName(String isleName) {
-		isleName = isleName;
+		this.isleName = isleName;
 	} 
 	
 	

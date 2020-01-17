@@ -20,67 +20,60 @@ public class JdbcPersistance  {
 	
 	
 	public ArrayList<TouristicSite> FetchTourisitcSites(String query) throws Exception {
-		ArrayList<TouristicSite> queryResult = new ArrayList<TouristicSite>() ; 
-			
-				PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(query);
-
-				ResultSet result = preparedStatement.executeQuery();
-				TouristicSite tourisitcsite  = new TouristicSite();
+		ArrayList<TouristicSite> queryResult = new ArrayList<TouristicSite>() ; 			
+		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(query);
 		
+		ResultSet result = preparedStatement.executeQuery();
 				
 		while (result.next()) {
-			 
-					tourisitcsite.setName(result.getString("name"));	
-					tourisitcsite.setType(result.getString("type"));
-					tourisitcsite.setLongitude(result.getFloat("longitude"));
-					tourisitcsite.setLatitude(result.getFloat("latitude"));
-					tourisitcsite.setPrice(result.getFloat("price"));
-					tourisitcsite.setIsleName(result.getString("id_isle"));
-					tourisitcsite.setDuration(result.getFloat("duration"));
-					tourisitcsite.setDescription(result.getString("description"));
-					
-					queryResult.add(tourisitcsite);
-	
+			TouristicSite tourisitcsite  = new TouristicSite();
+			tourisitcsite.setName(result.getString("name"));	
+			tourisitcsite.setType(result.getString("type"));
+			tourisitcsite.setLongitude(result.getFloat("longitude"));
+			tourisitcsite.setLatitude(result.getFloat("latitude"));
+			tourisitcsite.setPrice(result.getFloat("price"));
+			tourisitcsite.setIsleName(result.getString("id_isle"));
+			tourisitcsite.setDuration(result.getFloat("duration"));
+			tourisitcsite.setDescription(result.getString("description"));
 			
-				}
-				
-				preparedStatement.close();
-				return queryResult;
-				
-	}
+			queryResult.add(tourisitcsite);
+		}
+	preparedStatement.close();
+	return queryResult;				
+}
 
 	
-	public ArrayList<Transport> FetchTransportsWays(String query) throws Exception{
+	public ArrayList<Transport> FetchTransports(String query) throws Exception{
 		ArrayList<Transport> queryResult = new ArrayList<Transport>() ;
 		String selectAddressQuery = query;
 		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
-
+		
 		ResultSet result = preparedStatement.executeQuery();
-		Transport transport  = new Transport();
+		
 		while (result.next()) {
+			Transport transport  = new Transport();
 			transport.setType(result.getString("type"));
 			transport.setKilometerPrice(result.getFloat("kilometerPrice"));
 			transport.setKilometerDuration(result.getFloat("kilometerDuration"));
 			
 			queryResult.add(transport);
 	
-		}
-		
+		}	
 		preparedStatement.close();
 		return queryResult;
-		
 	}
 
 	
 	public ArrayList<Hotel> FetchHotels(String query) throws Exception{
+		System.out.println(query);
 		ArrayList<Hotel> queryResult = new ArrayList<Hotel>() ; 
 		String selectAddressQuery = query;
 		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
 
 		ResultSet result = preparedStatement.executeQuery();
-		Hotel hotel  = new Hotel();
+		
 		while (result.next()) {
-			
+			Hotel hotel  = new Hotel();
 			hotel.setName(result.getString("name"));
 			hotel.setBeach(result.getString("beach"));
 			hotel.setPrice(result.getFloat("price")) ;
@@ -90,9 +83,7 @@ public class JdbcPersistance  {
 			hotel.setIsleName(result.getString("isleName")) ;
 			
 			queryResult.add(hotel);
-	
 		}
-		
 		preparedStatement.close();
 		return queryResult;		
 	}
@@ -100,10 +91,9 @@ public class JdbcPersistance  {
 	public ArrayList<Hotel> selectAllHotel(){
 		ArrayList<Hotel> queryResult = null;
 		try {
-			queryResult = FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name as isleName"
-					+ " FROM Hotel,Isle WHERE Isle.id_isle = Hotel.id_isle");
+			queryResult = FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name As isleName"
+					+ " FROM Hotel,Isle WHERE Hotel.id_isle = Isle.id_isle;");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

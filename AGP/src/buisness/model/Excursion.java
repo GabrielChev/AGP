@@ -39,4 +39,24 @@ public class Excursion {
 		return  this.excursionPrice;
 		
 	}
+
+	public ArrayList<TouristicSite> getSites() {
+		return sites;
+	}
+
+	public void setSites(ArrayList<TouristicSite> sites) {
+		this.sites = sites;
+	}
+
+	public ArrayList<TransportOutil> getTransports() {
+		return transports;
+	}
+
+	public void setTransports(ArrayList<TransportOutil> transports) {
+		this.transports = transports;
+	}
+
+	public void setExcursionPrice(double excursionPrice) {
+		this.excursionPrice = excursionPrice;
+	}
 }
