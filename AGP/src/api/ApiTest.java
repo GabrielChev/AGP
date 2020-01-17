@@ -11,6 +11,7 @@ public class ApiTest {
 			
 
 			try {
+				
 				new ApiLucene().sqlJoinLuceneQuery("SELECT name,type,longitude,latitude,id_isle,description FROM TouristicSite WHERE type= 'historic' with musée mosquée");
 			} catch (IOException e) {
 				

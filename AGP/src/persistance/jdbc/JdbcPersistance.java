@@ -19,7 +19,7 @@ public class JdbcPersistance  {
 	
 	
 	
-	public ArrayList<TouristicSite>  FetchTourisitcSites(String query) throws Exception {
+	public ArrayList<TouristicSite> FetchTourisitcSites(String query) throws Exception {
 		ArrayList<TouristicSite> queryResult = new ArrayList<TouristicSite>() ; 
 			
 				PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(query);
@@ -48,6 +48,7 @@ public class JdbcPersistance  {
 				return queryResult;
 				
 	}
+
 	
 	public ArrayList<Transport> FetchTransportsWays(String query) throws Exception{
 		ArrayList<Transport> queryResult = new ArrayList<Transport>() ;
@@ -68,9 +69,8 @@ public class JdbcPersistance  {
 		preparedStatement.close();
 		return queryResult;
 		
-}
+	}
 
-	
 	
 	public ArrayList<Hotel> FetchHotels(String query) throws Exception{
 		ArrayList<Hotel> queryResult = new ArrayList<Hotel>() ; 
@@ -85,7 +85,7 @@ public class JdbcPersistance  {
 			hotel.setBeach(result.getString("beach"));
 			hotel.setPrice(result.getFloat("price")) ;
 			hotel.setLongitude(result.getFloat("longitude")) ;
-			hotel.setLatitude(result.getFloat("laitude")) ;
+			hotel.setLatitude(result.getFloat("latitude")) ;
 			hotel.setRating(result.getFloat("rating"));
 			hotel.setIsleName(result.getString("isleName")) ;
 			
@@ -94,9 +94,35 @@ public class JdbcPersistance  {
 		}
 		
 		preparedStatement.close();
-		return queryResult;
+		return queryResult;		
+	}
+	
+	public ArrayList<Hotel> selectAllHotel(){
+		ArrayList<Hotel> queryResult = null;
+		try {
+			queryResult = FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name as isleName"
+					+ " FROM Hotel,Isle WHERE Isle.id_isle = Hotel.id_isle");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-}
+		return queryResult;
+	}
+	
+	public void insertTouristicSite(TouristicSite touristicsite) throws Exception{
+		ArrayList<Hotel> queryResult = new ArrayList<Hotel>() ; 
+		String selectAddressQuery = " insert into Touristicsite ("
+				+ "name, type, description, longitude, latitude,price,IsleNamen,duration) "
+				+ "values ("+touristicsite.getName()+","+touristicsite.getType()+","+touristicsite.getPrice()+","+touristicsite.getIsleName()+", "+touristicsite.getDuration()+")";
+		PreparedStatement preparedStatement = (PreparedStatement) JdbcConnection.getConnection().prepareStatement(selectAddressQuery);
+	
+		ResultSet result = preparedStatement.executeQuery();
+		
+		preparedStatement.close();
+	
+		
+	}
 	
 }
 

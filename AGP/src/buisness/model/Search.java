@@ -18,6 +18,7 @@ public class Search {
 	private float hotelRatingMax;
 	private int days;
 	private TouristicSite touristicSite ;
+	private String pace;
 	
 
 	public Search() {
@@ -36,12 +37,13 @@ public class Search {
 	 * @return a list of hotel
 	 */
 
-	public Search(String keyWords, String name, double offerPriceMin, double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days) {
+	public Search(String keyWords, String name, double offerPriceMin, double offerPriceMax, double confort, float hotelRatingMin, float hotelRatingMax, int days, String pace) {
 		this.keyWords = keyWords;
 		this.name = name;
 		this.offerPriceMin = offerPriceMin;
 		this.offerPriceMax = offerPriceMax;
 		this.confort = confort;
+		this.pace = pace;
 		this.hotelRatingMin = hotelRatingMin;
 		this.hotelRatingMax = hotelRatingMax;
 		this.days = days;

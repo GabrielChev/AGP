@@ -2,6 +2,7 @@ package buisness.model;
 
 import java.util.ArrayList;
 
+import buisness.objects.Hotel;
 import buisness.objects.TouristicSite;
 
 public class CalculateDistance {
@@ -35,6 +36,23 @@ public class CalculateDistance {
 		}
 		
 		return sites.get(minIndex);
+	}
+	
+	public Hotel findNearestHotel(double latitude , double longitude , ArrayList<Hotel> hotels) {
+		
+		double minDistance = 0;
+		int minIndex = 0;
+		double distance = minDistance;
+		
+		for(int i=0 ; i<hotels.size(); i++) {
+			distance = calculateDistance(latitude,longitude , hotels.get(i).getLatitude() , hotels.get(i).getLongitude());
+			if(distance < minDistance) {
+				minDistance = distance;
+				minIndex = i;
+			}
+		}
+		
+		return hotels.get(minIndex);
 	}
      
 }

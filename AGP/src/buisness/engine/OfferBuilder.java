@@ -1,6 +1,7 @@
 package buisness.engine;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import buisness.model.CalculateDistance;
 import buisness.model.Excursion;
@@ -25,9 +26,16 @@ public class OfferBuilder {
 		int indexExcursion = 0;
 		int excursionDuration = 10;
 		
+		int sumDistanceToHotelInExcursion;
+		double lastSiteLatitude;
+		double lastSiteLongitude;
+		
 		ArrayList<TouristicSite> listSitesInExcursion = new ArrayList<TouristicSite>();
 		ArrayList<Excursion> listExcursions = new ArrayList<Excursion>();
+		ArrayList<Hotel> listHotels = new ArrayList<Hotel>();
 		CalculateDistance calculateDistance = new CalculateDistance();
+		Random random = new Random();
+		int nbRandom = 0;
 		
 		//Initialisation of actualLongitude and actualLatitude
 		if (listKeyWordsSites != null) {
@@ -45,7 +53,7 @@ public class OfferBuilder {
 			int indexSite = 0;
 			int sumDurationOnSite = 0;
 			boolean endDuration = false;
-			ArrayList<TouristicSite> listSites;
+			ArrayList<TouristicSite> listSites = null;
 			
 			//while we can add a site in an excursion
 			while(indexSite < siteNumber && endDuration != true) {
@@ -70,9 +78,19 @@ public class OfferBuilder {
 			}
 			Excursion proposedExcursion = new Excursion(listSitesInExcursion, null);
 			listExcursions.add(proposedExcursion);
+			
+			lastSiteLatitude = listSites.get(listSites.size()).getLatitude();
+			lastSiteLongitude = listSites.get(listSites.size()).getLongitude();
+			listHotels.add(calculateDistance.findNearestHotel(lastSiteLatitude, lastSiteLongitude, listHotels));
+			
 			indexExcursion++;
 		}
-		hotel = new Hotel("", null, actualLongitude, actualLongitude, actualLongitude, actualLongitude, null);
+		
+		//Get a random hotel in the list
+		
+		nbRandom = random.nextInt(listHotels.size());
+		hotel = listHotels.get(nbRandom);
+		
 		Stay proposedStay = new Stay(hotel, excursionDuration);
 		Offer offer = new Offer(proposedStay, listExcursions);
 		return offer;

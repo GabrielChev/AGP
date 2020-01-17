@@ -14,7 +14,7 @@ public class QueryBuilder {
 	
 	
 	public static ArrayList <Hotel> buildHotelQuery(String name, double dailyPriceMin, double dailyPriceMax, float hotelRaitingMin, float hotelRaitingMax) {
-		 ArrayList <Hotel> hotels = null ;
+		 ArrayList <Hotel> hotels = new ArrayList <Hotel>() ;
 		String query = "SELECT * FROM HOTEL WHERE name = "+name+" and price > "+dailyPriceMin+" and price < "+dailyPriceMax+" and rating >"+hotelRaitingMin+" and rating < "+hotelRaitingMax+" ";
 		
 		JdbcPersistance persistance = new JdbcPersistance();
@@ -35,8 +35,8 @@ public class QueryBuilder {
 	
 	
 	public static ArrayList <TouristicSite> buildTourisiticSitesQuery(String keywords, double dailyPriceMin, double dailyPriceMax) {
-		 ArrayList <TouristicSite> sites = null ;
-		String query = "SELECT * FROM TourisitcSite price > "+dailyPriceMin+" and price < "+dailyPriceMax+" with "+keywords+"";
+		 ArrayList <TouristicSite> sites = new  ArrayList <TouristicSite>() ;
+		String query = "SELECT * FROM TouristicSite where price between "+dailyPriceMin+" and "+dailyPriceMax+" with "+keywords+"";
 		
 		
 
@@ -56,8 +56,8 @@ public class QueryBuilder {
 	
 	
 	public static ArrayList <TouristicSite> buildTourisiticSitesQueryWithoutLucene(double dailyPriceMin, double dailyPriceMax) {
-		 ArrayList <TouristicSite> sites = null ;
-		String query = "SELECT * FROM TourisitcSite price > "+dailyPriceMin+" and price < "+dailyPriceMax+"";
+		 ArrayList <TouristicSite> sites =  new ArrayList <TouristicSite>() ;
+		String query = "SELECT * FROM TouristicSite where price between "+dailyPriceMin+" and "+dailyPriceMax+"";
 		
 		
 
@@ -78,7 +78,7 @@ public class QueryBuilder {
 	}
 	
 	public static ArrayList <Transport> buildTransportQuery(String name, double dailyPriceMin, double dailyPriceMax, float hotelRaitingMin, float hotelRaitingMax) {
-		 ArrayList <Transport> transport = null ;
+		 ArrayList <Transport> transport = new ArrayList <Transport>() ;
 		String query = "SELECT * FROM HOTEL WHERE name = "+name+" and price > "+dailyPriceMin+" and price < "+dailyPriceMax+" and rating >"+hotelRaitingMin+" and rating < "+hotelRaitingMax+" ";
 		
 		JdbcPersistance persistance = new JdbcPersistance();
