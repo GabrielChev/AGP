@@ -46,8 +46,6 @@ public class QueryBuilder {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
 		
 		return sites;
 		
@@ -101,7 +99,6 @@ public class QueryBuilder {
 		listStringName = listStringName.replaceAll("'", "\"");
 		ArrayList<Transport> transport = new ArrayList<Transport>();
 		String query = "SELECT Transport.type,Transport.kilometerPrice,Transport.kilometerDuration,TouristicSite.name FROM TouristicSite,Transport WHERE Transport.id_touristicSite = TouristicSite.id_touristicSite AND TouristicSite.Name IN "+ listStringName + "";
-		System.out.println(query);
 		JdbcPersistance persistance = new JdbcPersistance();
 
 		try {

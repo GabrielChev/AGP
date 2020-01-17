@@ -52,7 +52,12 @@ public class JdbcPersistance  {
 		
 		while (result.next()) {
 			Transport transport  = new Transport();
-			transport.setType(result.getString("type"));
+			if(result.getString("type") != null) {
+				transport.setType(result.getString("type"));
+			}
+			else {
+				transport.setType(" ");
+			}
 			transport.setKilometerPrice(result.getFloat("kilometerPrice"));
 			transport.setKilometerDuration(result.getFloat("kilometerDuration"));
 			

@@ -84,10 +84,10 @@ public class OfferBuilder {
 				}
 				indexSite++;
 			}
-			//Add All Transports
+			//Add All Transports corresponding to listSitesInExcursion
 			ArrayList<Transport> transports = new ArrayList<Transport>();
-			
 			if(listSitesInExcursion != null && listSitesInExcursion.size() > 0) {
+				//Function who make difference if next site is on isle or other isle, to know if we need to use Boat or Bus
 				transports = queryBuilder.buildTransportQuery(listSitesInExcursion);
 			}
 

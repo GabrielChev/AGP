@@ -44,11 +44,20 @@ public class TestOffer {
 		System.out.println("Construction d'une offre");
 		offer = offerBuilder.buildOffer(listAllSites, listAllSites, listAllHotels);
 		
-		for (l = 0; l< offer.getProposedExcursion().size(); l++) {
-			for (h = 0; h < offer.getProposedExcursion().get(l).getSites().size();h++) {
-				System.out.println(offer.getProposedExcursion().get(l).getSites().get(h).getName());
-			}
+		for (l = 0; l< 5; l++) {
+
+				System.out.print(offer.getProposedExcursion().get(l).getSites().get(0).getName());
+					
+				System.out.print(" - " + offer.getProposedExcursion().get(l).getTransports().get(0).getType());
+						
+				System.out.print(" - " + offer.getProposedExcursion().get(l).getTransports().get(0).getKilometerPrice());
+				
+				System.out.println(" - " + offer.getProposedExcursion().get(l).getTransports().get(0).getKilometerDuration());
+			
 		}
+		
+		
+		
 	}
 
 }
