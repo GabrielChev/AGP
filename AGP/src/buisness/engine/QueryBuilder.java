@@ -76,28 +76,46 @@ public class QueryBuilder {
 		
 		
 	}
+	private static String generateString(ArrayList<String> selectedFiles) {
+		String filesSelected = "(";
+		if(selectedFiles.size() == 0) {
+			filesSelected = null;
+		}else {
+			for (int i = 0 ; i< selectedFiles.size();i++) {
+				if(i == selectedFiles.size()-1) {
+					filesSelected += "'"+selectedFiles.get(i)+"')";
+				}else {
+					filesSelected += "'"+selectedFiles.get(i)+"',";
+				}
+			}
+		}
+		return filesSelected;
+	}
 	
-	public static ArrayList<Transport> buildTransportQuery(String name, double dailyPriceMin, double dailyPriceMax, float hotelRaitingMin, float hotelRaitingMax) {
-		 ArrayList <Transport> transport = new ArrayList <Transport>() ;
-		String query = "SELECT * FROM HOTEL WHERE name = "+name+" and price > "+dailyPriceMin+" and price < "+dailyPriceMax+" and rating >"+hotelRaitingMin+" and rating < "+hotelRaitingMax+" ";
-		
+	public static ArrayList<Transport> buildTransportQuery(ArrayList<TouristicSite> sites) {
+		ArrayList<String> sitesName = new ArrayList<String>();
+		for (int i = 0; i< sites.size();i++) {
+			sitesName.add(sites.get(i).getName());
+		}
+		String listStringName = generateString(sitesName);
+		listStringName = listStringName.replaceAll("'", "\"");
+		ArrayList<Transport> transport = new ArrayList<Transport>();
+		String query = "SELECT Transport.type,Transport.kilometerPrice,Transport.kilometerDuration,TouristicSite.name FROM TouristicSite,Transport WHERE Transport.id_touristicSite = TouristicSite.id_touristicSite AND TouristicSite.Name IN "+ listStringName + "";
+		System.out.println(query);
 		JdbcPersistance persistance = new JdbcPersistance();
 
 		try {
 			transport = persistance.FetchTransports(query);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	
-		
+		}	
 		
 		return transport;
 		
 	}
 	
 	public ArrayList<Hotel> selectAllHotel(){
-		ArrayList<Hotel> queryResult = null;
+		ArrayList<Hotel> queryResult = new ArrayList<Hotel>();
 		JdbcPersistance persistance = new JdbcPersistance();
 		try {
 			queryResult = persistance.FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name As isleName"

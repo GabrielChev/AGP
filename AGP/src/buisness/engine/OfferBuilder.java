@@ -9,6 +9,7 @@ import buisness.model.Offer;
 import buisness.model.Stay;
 import buisness.objects.Hotel;
 import buisness.objects.TouristicSite;
+import buisness.objects.Transport;
 import buisness.engine.ExcursionBuilder;
 
 public class OfferBuilder {
@@ -33,6 +34,8 @@ public class OfferBuilder {
 		ArrayList<Excursion> listExcursions = new ArrayList<Excursion>();
 		ArrayList<Hotel> listHotels = new ArrayList<Hotel>();
 		CalculateDistance calculateDistance = new CalculateDistance();
+		QueryBuilder queryBuilder = new QueryBuilder();
+		
 		Random random = new Random();
 		int nbRandom = 0;
 		
@@ -54,6 +57,7 @@ public class OfferBuilder {
 			boolean endDuration = false;
 			ArrayList<TouristicSite> listSites = null;
 			ArrayList<TouristicSite> listSitesInExcursion = new ArrayList<TouristicSite>();
+
 			//while we can add a site in an excursion
 			while(indexSite < siteNumber && endDuration != true) {
 				TouristicSite proposedSite = new TouristicSite();
@@ -80,12 +84,21 @@ public class OfferBuilder {
 				}
 				indexSite++;
 			}
-			Excursion proposedExcursion = new Excursion(listSitesInExcursion, null);
+			//Add All Transports
+			ArrayList<Transport> transports = new ArrayList<Transport>();
+			
+			if(listSitesInExcursion != null && listSitesInExcursion.size() > 0) {
+				transports = queryBuilder.buildTransportQuery(listSitesInExcursion);
+			}
+
+			Excursion proposedExcursion = new Excursion(listSitesInExcursion, transports);
+			
 			listExcursions.add(proposedExcursion);
 			if (listSitesInExcursion.size() > 0) {
 				lastSiteLatitude = listSitesInExcursion.get(listSitesInExcursion.size()-1).getLatitude();
 				lastSiteLongitude = listSitesInExcursion.get(listSitesInExcursion.size()-1).getLongitude();
 			}
+			//Add the nearest Hotel to a list of Hotel
 			listHotels.add(calculateDistance.findNearestHotel(lastSiteLatitude, lastSiteLongitude, listAllHotels));
 			
 			indexExcursion++;

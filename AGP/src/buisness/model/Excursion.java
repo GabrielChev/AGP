@@ -3,19 +3,20 @@ package buisness.model;
 import java.util.ArrayList;
 
 import buisness.objects.TouristicSite;
+import buisness.objects.Transport;
 
 public class Excursion {
 	
 	private ArrayList<TouristicSite> sites;
-	private ArrayList<TransportOutil> transports;
+	private ArrayList<Transport> transports;
 	
 	private double excursionPrice;
 		
 	//the first parameter must be the list of sites to be visited during this excursion
 	//the second parameter should be the list of transports to be used during this excursion
-	public Excursion(ArrayList<TouristicSite> sites , ArrayList<TransportOutil> transports){
+	public Excursion(ArrayList<TouristicSite> sites , ArrayList<Transport> transports2){
 		this.sites=sites;
-		this.transports = transports;	
+		this.transports = transports2;	
 	}
 
 	public double getExcursionPrice() {
@@ -31,7 +32,7 @@ public class Excursion {
 		
 		while(j < this.sites.size()) {
 			dis = cal.calculateDistance(this.sites.get(i), this.sites.get(j));
-			this.excursionPrice += dis * this.transports.get(i).getKiloMeterPrice() + this.sites.get(i).getPrice();
+			this.excursionPrice += dis * this.transports.get(i).getKilometerPrice() + this.sites.get(i).getPrice();
 			i +=1;
 			j+=1;	
 		}
@@ -48,11 +49,11 @@ public class Excursion {
 		this.sites = sites;
 	}
 
-	public ArrayList<TransportOutil> getTransports() {
+	public ArrayList<Transport> getTransports() {
 		return transports;
 	}
 
-	public void setTransports(ArrayList<TransportOutil> transports) {
+	public void setTransports(ArrayList<Transport> transports) {
 		this.transports = transports;
 	}
 
