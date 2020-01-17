@@ -77,14 +77,14 @@ public class QueryBuilder {
 		
 	}
 	
-	public static ArrayList <Transport> buildTransportQuery(String name, double dailyPriceMin, double dailyPriceMax, float hotelRaitingMin, float hotelRaitingMax) {
+	public static ArrayList<Transport> buildTransportQuery(String name, double dailyPriceMin, double dailyPriceMax, float hotelRaitingMin, float hotelRaitingMax) {
 		 ArrayList <Transport> transport = new ArrayList <Transport>() ;
 		String query = "SELECT * FROM HOTEL WHERE name = "+name+" and price > "+dailyPriceMin+" and price < "+dailyPriceMax+" and rating >"+hotelRaitingMin+" and rating < "+hotelRaitingMax+" ";
 		
 		JdbcPersistance persistance = new JdbcPersistance();
 
 		try {
-			transport = persistance.FetchTransportsWays(query);
+			transport = persistance.FetchTransports(query);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,6 +94,19 @@ public class QueryBuilder {
 		
 		return transport;
 		
+	}
+	
+	public ArrayList<Hotel> selectAllHotel(){
+		ArrayList<Hotel> queryResult = null;
+		JdbcPersistance persistance = new JdbcPersistance();
+		try {
+			queryResult = persistance.FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name As isleName"
+					+ " FROM Hotel,Isle WHERE Hotel.id_isle = Isle.id_isle;");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		return queryResult;
 	}
-	}
+
+}

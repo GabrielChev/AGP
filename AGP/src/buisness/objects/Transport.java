@@ -5,6 +5,7 @@ public class Transport {
 		private String type;
 		private double kilometerPrice;
 		private double kilometerDuration;
+		private String touristicSiteName;
 		
 		
 		public double getKilometerDuration() {
@@ -41,10 +42,21 @@ public class Transport {
 		public void setKilometerPrice(double kilometerPrice) {
 			this.kilometerPrice = kilometerPrice;
 		}
+		
+		public String getTouristicSiteName() {
+			return touristicSiteName;
+		}
 
+		public void setTouristicSiteName(String touristicSiteName) {
+			this.touristicSiteName = touristicSiteName;
+		}
+		
 		@Override
 		public String toString() {
 			return "TransportWay [type=" + type + ", kilometerPrice=" + kilometerPrice + "]";
 		}
+
+
+
 		
 }

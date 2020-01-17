@@ -20,10 +20,11 @@ public class OfferBuilder {
 		Hotel hotel = null;
 		double actualLatitude = 0;
 		double actualLongitude = 0;
-		int siteNumber = 5; //dépend de search
-		int excursionNumber = 5; //dépend de search
 		int indexExcursion = 0;
-		int excursionDuration = 10;
+		
+		int siteNumber = 5; //dépend du rythme de search
+		int excursionNumber = 5; //dépend du rythme de search
+		int excursionDuration = 10; //dépend du rythme de search
 		
 		int sumDistanceToHotelInExcursion;
 		double lastSiteLatitude = 0;

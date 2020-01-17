@@ -88,18 +88,6 @@ public class JdbcPersistance  {
 		return queryResult;		
 	}
 	
-	public ArrayList<Hotel> selectAllHotel(){
-		ArrayList<Hotel> queryResult = null;
-		try {
-			queryResult = FetchHotels("SELECT Hotel.name,Hotel.beach,Hotel.price,Hotel.longitude,Hotel.latitude,Hotel.rating,Isle.name As isleName"
-					+ " FROM Hotel,Isle WHERE Hotel.id_isle = Isle.id_isle;");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return queryResult;
-	}
-	
 	public void insertTouristicSite(TouristicSite touristicsite) throws Exception{
 		ArrayList<Hotel> queryResult = new ArrayList<Hotel>() ; 
 		String selectAddressQuery = " insert into Touristicsite ("
@@ -110,10 +98,7 @@ public class JdbcPersistance  {
 		ResultSet result = preparedStatement.executeQuery();
 		
 		preparedStatement.close();
-	
-		
 	}
-	
 }
 
 
