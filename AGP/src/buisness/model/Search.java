@@ -129,6 +129,14 @@ public class Search {
 		this.touristicSite = touristicSite;
 	}
 
+	public String getPace() {
+		return pace;
+	}
+
+	public void setPace(String pace) {
+		this.pace = pace;
+	}
+
 
 
 	
